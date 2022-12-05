@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://picsum.photos/50">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins'],
+                    },
+                    container: {
+                        padding: {
+                            DEFAULT: '2rem',
+                            sm: '2rem',
+                            lg: '4rem',
+                            xl: '6rem',
+                            '2xl': '8rem',
+                            center: true
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        #mode:checked ~ label div.toggle {
+            @apply translate-x-4 transition
+        }
+    </style>
+    <title>SMKN 2 Kupang</title>
+</head>
+<body class="font-poppins dark:bg-gray-900 cursor-default">
+
+    <header>
+        
+        <!-- NAVBAR -->
+        <nav class="w-full z-10 fixed">
+            <div class="py-4 bg-black/30 rounded-b-3xl backdrop-blur-lg dark:bg-white/30">
+                <div class="container flex flex-wrap justify-between items-center mx-auto">
+                    <div class="flex items-center gap-6">    
+                        <a href="#" class="h-full flex items-center gap-3 xl:gap-6">
+                            <span class="lg:text-2xl font-medium text-white dark:text-gray-900">BUKA</span>
+                        </a>
+
+                        <!-- navbar-dark-mode -->
+                        <ul class="flex items-center">
+                            <li class="relative flex flex-col items-center justify-center">
+                                <div class="peer">
+                                    <input id="mode" type="checkbox" class="hidden transition"/>
+                                    <label for="mode">
+                                        <div class="w-10 p-1 flex items-center bg-white dark:bg-gray-800 rounded-full cursor-pointer">
+                                            <div class="toggle h-4 w-4 relative flex items-center justify-center bg-sky-500 rounded-full transition">
+                                                <i class="bi bi-brightness-high fa-xs block dark:hidden dark:text-gray-800 transition"></i>
+                                                <i class="bi bi-moon-fill fa-xs hidden dark:block dark:text-gray-800 transition"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="p-2 z-10 hidden absolute top-9 text-xs font-light text-black align-middle bg-white rounded-md shadow-lg peer-hover:block dark:peer-hover:hidden transition">Mode&nbspcerah</div>
+                                <div class="p-2 z-10 hidden absolute top-9 text-xs font-light text-white align-middle bg-gray-800 rounded-md shadow-lg peer-hover:hidden dark:peer-hover:block transition">Mode&nbspgelap</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- navbar-profile -->
+                    <div class="flex-shrink-0">                
+                        <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="flex items-center gap-3 text-black dark:text-white bg-white rounded-xl shadow-xl focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium text-sm px-4 py-3 text-center dark:bg-gray-800 dark:focus:ring-sky-800 group hover:translate-y-1 hover:shadow-lg transition-all" type="button">
+                            <div class="h-8 w-8 rounded-full overflow-hidden flex-shrink-0">
+                                <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                            </div>
+                            <div>
+                                <span>Hello, Admin!</span>
+                                <i class="bi bi-chevron-down ml-1"></i>
+                            </div>
+                        </button>
+
+                        <!-- navbar-profile-menu -->
+                        <div id="dropdownInformation" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 10.4px, 0px);">
+                            <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+                                <div>Hieroglyphs</div>
+                                <div class="font-medium truncate">iniemail@gmail.com</div>
+                            </div>
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+                                <li>
+                                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- GREETING -->
+        <div class="h-screen relative flex flex-col xl:items-center justify-center bg-cover rounded-b-3xl overflow-hidden bg-gradient-to-b from-sky-400 to-sky-500">
+            <div class="container m-auto md:justify-center flex mb-5 -space-x-4">
+                <img class="w-10 h-10 rounded-full" src="https://picsum.photos/150/1" alt="">
+                <img class="w-10 h-10 rounded-full" src="https://picsum.photos/150/2" alt="">
+                <img class="w-10 h-10 rounded-full" src="https://picsum.photos/150/3" alt="">
+                <img class="w-10 h-10 rounded-full" src="https://picsum.photos/150/4" alt="">
+            </div>
+            <div class="container mx-auto flex flex-col gap-5 items-start md:items-center">
+                <h1 class="text-5xl font-bold text-white md:text-center">Cari pekerjaan sesuai minatmu!</h1>
+                <h2 class="text-xl font-light text-white md:text-center">Bursa Kerja SMKa</h2>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="container w-full m-auto flex flex-col lg:flex-row lg:items-center justify-center gap-6">                
+                <ul class="w-full grid md:grid-cols-4 lg:grid-cols-8 gap-6">
+                    <li class="col-span-4">
+                        <form>   
+                            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div class="relative">
+                                <button id="dropdownName" data-dropdown-toggle="nameDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white/75 dark:bg-black/75 rounded-full shadow-lg group">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Pilih Perusahaan</span>
+                                    <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                </button>
+                                <div id="nameDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                                    <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownName">
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Lele</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Kuyang</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Beo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Macan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="col-span-2">
+                        <form>   
+                            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div class="relative">
+                                <button id="dropdownType" data-dropdown-toggle="typeDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white/75 dark:bg-black/75 rounded-full shadow-lg group">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Jenis Perusahaan</span>
+                                    <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                </button>
+                                <div id="typeDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                                    <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownType">
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Lele</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Kuyang</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Beo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Macan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="col-span-2">
+                        <form>   
+                            <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            <div class="relative">
+                                <button id="dropdownSort" data-dropdown-toggle="sortDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white/75 dark:bg-black/75 rounded-full shadow-lg group">
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Urutkan</span>
+                                    <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                </button>
+                                <div id="sortDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                                    <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownSort">
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Lele</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Kuyang</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Beo</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Macan</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <div class="flex-shrink-0">
+                    <button class="w-full h-full p-3 text-white shadow-lg focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center bg-sky-600 hover:bg-sky-700 dark:focus:ring-sky-800">
+                        <i class="bi bi-search fa-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="container m-auto relative flex flex-col xl:flex-row items-center xl:items-start justify-center gap-6">
+
+            <!-- FILTER -->
+            <div class="w-full xl:w-52 mt-10 flex flex-col">
+
+                <!-- filter-title -->
+                <span class="mb-5 text-base uppercase text-gray-700 dark:text-white">
+                    FILTER
+                </span>
+
+                <!-- filter-card -->
+                <nav class="w-full h-fit p-6 rounded-3xl shadow-2xl bg-white dark:bg-gray-800">
+                    <div class="flex flex-row lg:flex-col justify-around gap-6">
+                        <div>
+                            <span class="dark:text-white">Kategori</span>
+                            <ul class="mt-6">
+                                <li class="flex items-center mb-4">
+                                    <input id="parttime" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="parttime" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Part Time</label>
+                                </i>
+                                <li class="flex items-center mb-4">
+                                    <input checked id="fulltime" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="fulltime" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full Time</label>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <input checked id="freelance" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="freelance" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Freelance</label>
+                                </li>
+                                <li>
+                                    <a href="" class="text-sm ml-6 text-gray-500 hover:font-semibold">Lainnya</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span class="dark:text-white">Lokasi</span>
+                            <ul class="mt-6">
+                                <li class="flex items-center mb-4">
+                                    <input id="parttime" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="parttime" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Part Time</label>
+                                </i>
+                                <li class="flex items-center mb-4">
+                                    <input checked id="fulltime" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="fulltime" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Full Time</label>
+                                </li>
+                                <li class="flex items-center mb-4">
+                                    <input checked id="freelance" type="checkbox" value="" class="w-4 h-4 text-sky-600 bg-gray-100 rounded border-gray-300 focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="freelance" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Freelance</label>
+                                </li>
+                                <li>
+                                    <a href="" class="text-sm ml-6 text-gray-500 hover:font-semibold">Lainnya</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="w-full mt-5 p-4 rounded-2xl bg-sky-500 hover:bg-sky-600 text-sm font-medium text-white">
+                        Terapkan
+                    </button>
+                </nav>
+            </div>
+            
+
+            <!-- POST -->
+            <div class="w-full mt-10 flex flex-col">
+
+                <!-- post-title -->
+                <span class="mb-5 text-base uppercase text-gray-700 dark:text-white">
+                    LOWONGAN PEKERJAAN
+                </span>
+
+                <!-- post-card -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-5">
+                    <div class="h-fit w-full p-8 flex justify-around gap-5 flex-col xl:flex-row rounded-3xl shadow-2xl bg-white dark:bg-gray-800">
+                        <div class="flex justify-center items-center">
+                            <div class="h-24 w-24 lg:h-32 lg:w-32 rounded-2xl overflow-hidden">
+                                <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center xl:items-start gap-3 justify-between">
+                            <div class="flex flex-col items-center xl:items-start">
+                                <h1 class="text-xl lg:text-4xl font-semibold text-black dark:text-white">Fullstack Developer</h1>
+                                <h2 class="text-sm lg:text-base font-normal text-gray-500">Tokopedia</h2>
+                            </div>
+                            <time class="text-xs lg:text-base font-normal text-gray-500 lowercase">5 hari yang lalu</time>
+                        </div>
+                        <div class="flex flex-col justify-center gap-1 lg:gap-3 ml-12 xl:ml-0 dark:text-white text-xs lg:text-base">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-geo-alt"></i>
+                                <span class="font-normal uppercase">JAKARTA, DKI JAKARTA</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-person"></i>
+                                <span class="font-normal lowercase">20 orang</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-eye"></i>
+                                <span class="font-normal lowercase">250 kali</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <button class="flex justify-center gap-3 w-52 h-fit py-5 rounded-xl bg-sky-500 text-white hover:bg-sky-600">
+                                <i class="bi bi-pen fa-lg"></i>
+                                <span class="text-sm font-semibold uppercase">DETAIL PEKERJAAN</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="h-fit w-full p-8 flex justify-around gap-5 flex-col xl:flex-row rounded-3xl shadow-2xl bg-white dark:bg-gray-800">
+                        <div class="flex justify-center items-center">
+                            <div class="h-24 w-24 lg:h-32 lg:w-32 rounded-2xl overflow-hidden">
+                                <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center xl:items-start gap-3 justify-between">
+                            <div class="flex flex-col items-center xl:items-start">
+                                <h1 class="text-xl lg:text-4xl font-semibold text-black dark:text-white">Fullstack Developer</h1>
+                                <h2 class="text-sm lg:text-base font-normal text-gray-500">Tokopedia</h2>
+                            </div>
+                            <time class="text-xs lg:text-base font-normal text-gray-500 lowercase">5 hari yang lalu</time>
+                        </div>
+                        <div class="flex flex-col justify-center gap-1 lg:gap-3 ml-12 xl:ml-0 dark:text-white text-xs lg:text-base">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-geo-alt"></i>
+                                <span class="font-normal uppercase">JAKARTA, DKI JAKARTA</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-person"></i>
+                                <span class="font-normal lowercase">20 orang</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-eye"></i>
+                                <span class="font-normal lowercase">250 kali</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <button class="flex justify-center gap-3 w-52 h-fit py-5 rounded-xl bg-sky-500 text-white hover:bg-sky-600">
+                                <i class="bi bi-pen fa-lg"></i>
+                                <span class="text-sm font-semibold uppercase">DETAIL PEKERJAAN</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="h-fit w-full p-8 flex justify-around gap-5 flex-col xl:flex-row rounded-3xl shadow-2xl bg-white dark:bg-gray-800">
+                        <div class="flex justify-center items-center">
+                            <div class="h-24 w-24 lg:h-32 lg:w-32 rounded-2xl overflow-hidden">
+                                <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center xl:items-start gap-3 justify-between">
+                            <div class="flex flex-col items-center xl:items-start">
+                                <h1 class="text-xl lg:text-4xl font-semibold text-black dark:text-white">Fullstack Developer</h1>
+                                <h2 class="text-sm lg:text-base font-normal text-gray-500">Tokopedia</h2>
+                            </div>
+                            <time class="text-xs lg:text-base font-normal text-gray-500 lowercase">5 hari yang lalu</time>
+                        </div>
+                        <div class="flex flex-col justify-center gap-1 lg:gap-3 ml-12 xl:ml-0 dark:text-white text-xs lg:text-base">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-geo-alt"></i>
+                                <span class="font-normal uppercase">JAKARTA, DKI JAKARTA</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-person"></i>
+                                <span class="font-normal lowercase">20 orang</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-eye"></i>
+                                <span class="font-normal lowercase">250 kali</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <button class="flex justify-center gap-3 w-52 h-fit py-5 rounded-xl bg-sky-500 text-white hover:bg-sky-600">
+                                <i class="bi bi-pen fa-lg"></i>
+                                <span class="text-sm font-semibold uppercase">DETAIL PEKERJAAN</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="h-fit w-full p-8 flex justify-around gap-5 flex-col xl:flex-row rounded-3xl shadow-2xl bg-white dark:bg-gray-800">
+                        <div class="flex justify-center items-center">
+                            <div class="h-24 w-24 lg:h-32 lg:w-32 rounded-2xl overflow-hidden">
+                                <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center xl:items-start gap-3 justify-between">
+                            <div class="flex flex-col items-center xl:items-start">
+                                <h1 class="text-xl lg:text-4xl font-semibold text-black dark:text-white">Fullstack Developer</h1>
+                                <h2 class="text-sm lg:text-base font-normal text-gray-500">Tokopedia</h2>
+                            </div>
+                            <time class="text-xs lg:text-base font-normal text-gray-500 lowercase">5 hari yang lalu</time>
+                        </div>
+                        <div class="flex flex-col justify-center gap-1 lg:gap-3 ml-12 xl:ml-0 dark:text-white text-xs lg:text-base">
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-geo-alt"></i>
+                                <span class="font-normal uppercase">JAKARTA, DKI JAKARTA</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-person"></i>
+                                <span class="font-normal lowercase">20 orang</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="bi bi-eye"></i>
+                                <span class="font-normal lowercase">250 kali</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center gap-3">
+                            <button class="flex justify-center gap-3 w-52 h-fit py-5 rounded-xl bg-sky-500 text-white hover:bg-sky-600">
+                                <i class="bi bi-pen fa-lg"></i>
+                                <span class="text-sm font-semibold uppercase">DETAIL PEKERJAAN</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INDICATOR -->
+        <div class="container mx-auto w-full flex flex-col md:flex-row mt-20 gap-5 items-center justify-end">
+            <span class="text-sm font-light text-gray-500">menampilkan 9 dari 25 lowongan</span>
+            <div class="flex gap-2">
+
+                <!-- indicator-left -->
+                <button class="h-9 w-9 flex items-center justify-center rounded-r-lg rounded-l-3xl bg-gray-300 dark:bg-gray-800 active:bg-sky-500 dark:active:bg-sky-400 hover:scale-105 transition">
+                    <i class="bi bi-chevron-left fa-sm text-white"></i>
+
+                </button>
+
+                <!-- indicator-number -->
+                <div class="flex gap-2">
+                    <button class="h-9 w-12 rounded-lg bg-gray-300 dark:bg-gray-800 active:bg-sky-500 dark:active:bg-sky-400 hover:scale-105 transition">
+                        <span class="text-lg font-semibold text-white">1</span>
+                    </button>
+                    <button class="h-9 w-12 rounded-lg bg-gray-300 dark:bg-gray-800 active:bg-sky-500 dark:active:bg-sky-400 hover:scale-105 transition">
+                        <span class="text-lg font-semibold text-white">2</span>
+                    </button>
+                    <button class="h-9 w-12 rounded-lg bg-gray-300 dark:bg-gray-800 active:bg-sky-500 dark:active:bg-sky-400 hover:scale-105 transition">
+                        <span class="text-lg font-semibold text-white">3</span>
+                    </button>
+
+                </div>
+
+                <!-- indicator-right -->
+                <button class="h-9 w-9 flex items-center justify-center rounded-l-lg rounded-r-3xl bg-gray-300 dark:bg-gray-800 active:bg-sky-500 dark:active:bg-sky-400 hover:scale-105 transition">
+                    <i class="bi bi-chevron-right fa-sm text-white"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+        <!-- CONTACT -->
+        <section  class="mt-20 py-8 lg:py-16 bg-sky-400 rounded-t-3xl">
+            <div class="container m-auto flex flex-col md:flex-row justify-between gap-6">
+                <a href="#">
+                    <ul class="md:text-lg text-white flex flex-col gap-2 md:gap-6">
+                        <li class="text-3xl font-bold">BUKA</li>
+                        <li>Bursa Kerja SMKa</li>
+                    </ul>
+                </a>
+                <ul class="md:text-lg text-white flex flex-col gap-2 md:gap-6">
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            Tentang BUKA
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            Syarat & Ketentuan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            FAQ
+                        </a>
+                    </li>
+                </ul>
+                <ul class="md:text-lg text-white flex flex-col gap-2 md:gap-6">
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            Permohonan Kerjasama
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            Pendaftaran Perusahaan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="hover:font-medium">
+                            Laporkan Penyalahgunaan
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section  class="py-6 bg-sky-500">
+            <div class="container m-auto md:text-lg text-white">
+                2022 @  SMKN 2 KUPANG | Hak Cipta dilindungi.
+            </div>
+        </section>
+    </footer>
+    <script>
+
+        // DARK MODE
+        const checkbox = document.querySelector('#mode');
+        const html = document.querySelector('html');
+
+        checkbox.addEventListener('click', function() {
+            checkbox.checked ? html.classList.add('dark') : html.classList.remove('dark');
+        });
+    </script>
+</body>
+</html>

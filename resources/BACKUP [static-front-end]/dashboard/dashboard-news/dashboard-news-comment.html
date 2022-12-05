@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://picsum.photos/50">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins'],
+                    },
+                    container: {
+                        padding: {
+                            DEFAULT: '2rem',
+                            sm: '2rem',
+                            lg: '4rem',
+                            xl: '6rem',
+                            '2xl': '8rem',
+                            center: true
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        #mode:checked ~ label div.toggle {
+            @apply translate-x-7 transition
+        }
+    </style>
+    <title>SMKN 2 Kupang</title>
+</head>
+<body class="font-poppins dark:bg-gray-900 cursor-default">
+    <header>
+        <div class="p-5 container m-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+            
+            <!-- DRAWER -->
+            <div class="w-full flex items-center sm:justify-start justify-between sm:gap-10">
+                <nav class="flex flex-col justify-between">
+
+                    <!-- drawer-toggle -->
+                    <div class="flex">
+                        <button class="text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-sky-600 dark:hover:bg-sky-700 focus:outline-none dark:focus:ring-sky-800" type="button" data-drawer-target="drawer-body-scrolling" data-drawer-show="drawer-body-scrolling" data-drawer-body-scrolling="true" aria-controls="drawer-body-scrolling">
+                            <i class="bi bi-list fa-2xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- drawer-component -->
+                    <div id="drawer-body-scrolling" class="fixed z-40 h-screen flex flex-col justify-between overflow-y-auto rounded-r-3xl bg-white w-80 dark:bg-gray-800 transition-transform left-0 top-0 -translate-x-full" tabindex="-1" aria-labelledby="drawer-body-scrolling-label" aria-hidden="true">
+                        <div>
+                            <div class="flex justify-between items-center p-3">
+                                <span id="drawer-body-scrolling-label" class="p-3 text-xl font-semibold text-gray-500 uppercase dark:text-gray-400">
+                                    Bursa Kerja SMK
+                                </span>
+                                <button type="button" data-drawer-dismiss="drawer-body-scrolling" aria-controls="drawer-body-scrolling" class="p-3 flex items-center text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-xl text-sm dark:hover:bg-gray-600 dark:hover:text-white">
+                                    <i class="bi bi-x-lg fa-xl"></i>
+                                </button>
+                            </div>
+
+                            <!-- drawer-component-card -->
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-grid-1x2 fa-lg"></i>
+                                            <span class="text-base font-medium">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-megaphone fa-lg"></i>
+                                            <span class="text-base font-medium">Pengumuman</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="group w-full flex items-center justify-between gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" aria-controls="dropdown-news" data-collapse-toggle="dropdown-news">
+                                            <div class="flex gap-5 items-center">
+                                                <i class="bi bi-newspaper fa-lg"></i>
+                                                <span class="text-base font-medium" sidebar-toggle-item>Berita</span>
+                                            </div>
+                                            <i class="bi bi-chevron-down fa-lg"></i>
+                                        </button>
+                                        <ul id="dropdown-news" class="hidden">
+                                            <li>
+                                                <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-20 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <span class="text-base font-medium">Daftar Berita</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-20 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <span class="text-base font-medium">Komentar</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                     </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-app-indicator fa-lg"></i>
+                                            <span class="text-base font-medium">Agenda Sekolah</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-image fa-lg"></i>
+                                            <span class="text-base font-medium">Galeri</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-journals fa-lg"></i>
+                                            <span class="text-base font-medium">Modul</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-calendar-check fa-lg"></i>
+                                            <span class="text-base font-medium">Event</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="flex items-center gap-5 py-5 pr-5 pl-10 text-base font-normal text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <i class="bi bi-trophy fa-lg"></i>
+                                            <span class="text-base font-medium">Prestasi</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- responsive-switch -->
+                        <ul class="p-5 flex justify-end">
+                            <li class="relative flex flex-col items-center justify-center">
+                                <div class="peer">
+                                    <input id="mode" type="checkbox" class="hidden transition"/>
+                                    <label for="mode">
+                                        <div class="w-16 p-1 flex items-center bg-gray-800 dark:bg-white rounded-full cursor-pointer">
+                                            <div class="toggle h-7 w-7 relative flex items-center justify-center bg-sky-500 rounded-full transition">
+                                                <i class="bi bi-brightness-high block dark:hidden dark:text-gray-800 transition"></i>
+                                                <i class="bi bi-moon-fill hidden dark:block dark:text-gray-800 transition"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- TITLE -->
+                <div class="text-3xl font-semibold text-sky-500">
+                    Postingan Berita
+                </div>
+            </div>
+
+            <!-- PROFILE -->
+            <div class="flex-shrink-0">                
+                <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="flex items-center gap-3 text-black dark:text-white bg-white rounded-3xl shadow-xl focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium text-sm px-4 py-3 text-center dark:bg-gray-800 dark:focus:ring-sky-800 group hover:translate-y-1 hover:shadow-lg transition-all" type="button">
+                    <div class="h-8 w-8 rounded-full overflow-hidden flex-shrink-0">
+                        <img src="https://picsum.photos/50" alt="profile" class="h-full w-full object-cover">
+                    </div>
+                    <div>
+                        <span>Hello, Admin!</span>
+                        <i class="bi bi-chevron-down ml-1"></i>
+                    </div>
+                </button>
+
+                <!-- profile-menu -->
+                <div id="dropdownInformation" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 10.4px, 0px);">
+                    <div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+                        <div>Hieroglyphs</div>
+                        <div class="font-medium truncate">iniemail@gmail.com</div>
+                    </div>
+                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
+                        <li>
+                            <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container mx-auto mt-10 mb-20">
+
+            <!-- NAVIGATION -->
+            <nav class="mb-8 grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6 items-center justify-between">
+
+                <!-- navigation-filter -->
+                <span class="text-center md:text-right text-sm text-gray-500">tampilkan</span>
+                <form class="md:col-span-2 xl:col-span-1">
+                    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <button id="dropdownEntry" data-dropdown-toggle="entryDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white dark:bg-gray-800 rounded-full shadow-lg group">
+                            <span class="text-sm text-gray-500">5 entri</span>
+                            <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div id="entryDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                            <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownEntry">
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">10 entri</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">25 entri</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">50 entri</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">100 entri</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                <span class="text-center md:text-right text-sm text-gray-500">Urut Berdasarkan</span>
+                <form>
+                    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <button id="dropdownDate" data-dropdown-toggle="dateDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white dark:bg-gray-800 rounded-full shadow-lg group">
+                            <span class="text-sm text-gray-500">Tanggal Postingan</span>
+                            <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div id="dateDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                            <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownDate">
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Lele</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Kuyang</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Beo</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Macan</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+                <form>
+                    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <button id="dropdownNew" data-dropdown-toggle="newDropdown" type="button" class="w-full p-4 pl-6 flex items-start bg-white dark:bg-gray-800 rounded-full shadow-lg group">
+                            <span class="text-sm text-gray-500">Terbaru Di Atas</span>
+                            <div class="absolute top-1/2 right-0 -mt-3 mr-5 h-6 w-6 text-white bg-sky-500 group-hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-full text-sm text-center inline-flex items-center justify-center dark:bg-sky-600 dark:group-hover:bg-sky-700 dark:focus:ring-sky-800">
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                        </button>
+                        <div id="newDropdown" class="hidden w-full z-10 bg-white rounded-2xl divide-y overflow-hidden shadow-xl divide-gray-100 dark:bg-gray-800">
+                            <ul class="p-0 text-gray-900 text-base dark:text-gray-200 z-10" aria-labelledby="dropdownNew">
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Lele</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Kuyang</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Beo</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-3 px-5 hover:bg-gray-100 dark:hover:bg-gray-800">Macan</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </nav>
+
+            <!-- LIST -->
+            <article class="flex flex-col items-center gap-6">
+                <div class="h-fit w-full p-6 flex flex-col md:flex-row justify-between gap-4 md:gap-20 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl">
+                    <div class="flex flex-col gap-2 justify-between">
+                        <div class="text-xs text-gray-500 flex items-center gap-2">
+                            <span>Komentar</span>
+                            <div class="h-1 w-1 rounded-full bg-gray-500"></div>
+                            <time>16 November 2022 | 12:30:40</time>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-lg font-bold dark:text-white">
+                                Bagus Sekali!, Semoga terus berkembang!
+                            </p>
+                            <h1 class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Penerimaan Siswa Baru TA. 2022/2023
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-10">
+                        <div>
+                            <select id="category" class="text-sm px-4 py-2 w-full bg-sky-500 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 text-white dark:focus:ring-sky-400 dark:focus:border-sky-400">
+                                <option>Tampilkan Komentar</option>
+                                <option>Sembunyikan Komentar</option>
+                            </select>
+                        </div>
+                        <div class="w-full flex items-center flex-row gap-6 justify-between md:justify-end">
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="comment">
+                                <i class="bi bi-chat-left fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-chat-left-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="comment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-900 dark:hover:text-white" data-modal-toggle="comment">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="py-6 px-6 lg:px-8">
+                                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Balas Komentar Berita</h3>
+                                            <form class="space-y-6" action="#">
+                                                <div>
+                                                    <label for="reply" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300">Balas Komentar</label>
+                                                    <textarea id="reply" class="p-4 w-full text-gray-900 bg-gray-200 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-400 dark:focus:border-sky-400"></textarea>
+                                                </div>
+                                                <button type="submit" class="w-full text-white  focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-sky-500 hover:bg-sky-600 dark:focus:ring-sky-800">
+                                                    Kirim Balasan Komentar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="delete">
+                                <i class="bi bi-trash fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-trash-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="delete" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="delete">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-6 text-center flex flex-col items-center gap-6">
+                                            <div class="h-14 w-14 border-4 border-gray-500 rounded-full flex items-center justify-center">
+                                                <i class="bi bi-exclamation-lg fa-2xl text-gray-500"></i>
+                                            </div>
+                                            <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                Anda yakin ingin menghapus item ini?
+                                            </h3>
+                                            <div class="flex items-center gap-4">
+                                                <button data-modal-toggle="delete" type="button" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                    Hapus
+                                                </button>
+                                                <button data-modal-toggle="delete" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                    Batal
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-fit w-full p-6 flex flex-col md:flex-row justify-between gap-4 md:gap-20 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl">
+                    <div class="flex flex-col gap-2 justify-between">
+                        <div class="text-xs text-gray-500 flex items-center gap-2">
+                            <span>Komentar</span>
+                            <div class="h-1 w-1 rounded-full bg-gray-500"></div>
+                            <time>16 November 2022 | 12:30:40</time>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-lg font-bold dark:text-white">
+                                Bagus Sekali!, Semoga terus berkembang!
+                            </p>
+                            <h1 class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Penerimaan Siswa Baru TA. 2022/2023
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-10">
+                        <div>
+                            <select id="category" class="text-sm px-4 py-2 w-full bg-sky-500 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 text-white dark:focus:ring-sky-400 dark:focus:border-sky-400">
+                                <option>Tampilkan Komentar</option>
+                                <option>Sembunyikan Komentar</option>
+                            </select>
+                        </div>
+                        <div class="w-full flex items-center flex-row gap-6 justify-between md:justify-end">
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="comment">
+                                <i class="bi bi-chat-left fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-chat-left-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="comment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-900 dark:hover:text-white" data-modal-toggle="comment">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="py-6 px-6 lg:px-8">
+                                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Balas Komentar Berita</h3>
+                                            <form class="space-y-6" action="#">
+                                                <div>
+                                                    <label for="reply" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300">Balas Komentar</label>
+                                                    <textarea id="reply" class="p-4 w-full text-gray-900 bg-gray-200 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-400 dark:focus:border-sky-400"></textarea>
+                                                </div>
+                                                <button type="submit" class="w-full text-white  focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-sky-500 hover:bg-sky-600 dark:focus:ring-sky-800">
+                                                    Kirim Balasan Komentar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="delete">
+                                <i class="bi bi-trash fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-trash-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="delete" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="delete">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-6 text-center flex flex-col items-center gap-6">
+                                            <div class="h-14 w-14 border-4 border-gray-500 rounded-full flex items-center justify-center">
+                                                <i class="bi bi-exclamation-lg fa-2xl text-gray-500"></i>
+                                            </div>
+                                            <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                Anda yakin ingin menghapus item ini?
+                                            </h3>
+                                            <div class="flex items-center gap-4">
+                                                <button data-modal-toggle="delete" type="button" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                    Hapus
+                                                </button>
+                                                <button data-modal-toggle="delete" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                    Batal
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-fit w-full p-6 flex flex-col md:flex-row justify-between gap-4 md:gap-20 bg-white dark:bg-gray-800 rounded-3xl shadow-2xl">
+                    <div class="flex flex-col gap-2 justify-between">
+                        <div class="text-xs text-gray-500 flex items-center gap-2">
+                            <span>Komentar</span>
+                            <div class="h-1 w-1 rounded-full bg-gray-500"></div>
+                            <time>16 November 2022 | 12:30:40</time>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <p class="text-lg font-bold dark:text-white">
+                                Bagus Sekali!, Semoga terus berkembang!
+                            </p>
+                            <h1 class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                                Penerimaan Siswa Baru TA. 2022/2023
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-10">
+                        <div>
+                            <select id="category" class="text-sm px-4 py-2 w-full bg-sky-500 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 text-white dark:focus:ring-sky-400 dark:focus:border-sky-400">
+                                <option>Tampilkan Komentar</option>
+                                <option>Sembunyikan Komentar</option>
+                            </select>
+                        </div>
+                        <div class="w-full flex items-center flex-row gap-6 justify-between md:justify-end">
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="comment">
+                                <i class="bi bi-chat-left fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-chat-left-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="comment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-900 dark:hover:text-white" data-modal-toggle="comment">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="py-6 px-6 lg:px-8">
+                                            <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Balas Komentar Berita</h3>
+                                            <form class="space-y-6" action="#">
+                                                <div>
+                                                    <label for="reply" class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300">Balas Komentar</label>
+                                                    <textarea id="reply" class="p-4 w-full text-gray-900 bg-gray-200 rounded-xl border-none sm:text-md focus:ring-sky-500 focus:border-sky-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-sky-400 dark:focus:border-sky-400"></textarea>
+                                                </div>
+                                                <button type="submit" class="w-full text-white  focus:ring-4 focus:outline-none focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-sky-500 hover:bg-sky-600 dark:focus:ring-sky-800">
+                                                    Kirim Balasan Komentar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <button class="flex flex-col items-center gap-2 group" type="button" data-modal-toggle="delete">
+                                <i class="bi bi-trash fa-xl text-gray-500 block group-hover:hidden transition-all"></i>
+                                <i class="bi bi-trash-fill fa-xl text-gray-500 hidden group-hover:block transition-all"></i>
+                            </button>
+                            <div id="delete" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 md:inset-0 h-modal md:h-full">
+                                <div class="relative w-full max-w-md h-full md:h-auto">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="delete">
+                                            <i class="bi bi-x-lg fa-xl"></i>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-6 text-center flex flex-col items-center gap-6">
+                                            <div class="h-14 w-14 border-4 border-gray-500 rounded-full flex items-center justify-center">
+                                                <i class="bi bi-exclamation-lg fa-2xl text-gray-500"></i>
+                                            </div>
+                                            <h3 class="text-lg font-normal text-gray-500 dark:text-gray-400">
+                                                Anda yakin ingin menghapus item ini?
+                                            </h3>
+                                            <div class="flex items-center gap-4">
+                                                <button data-modal-toggle="delete" type="button" class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                                    Hapus
+                                                </button>
+                                                <button data-modal-toggle="delete" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                    Batal
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+
+        // DARK MODE
+        const checkbox = document.querySelector('#mode');
+        const html = document.querySelector('html');
+
+        checkbox.addEventListener('click', function() {
+            checkbox.checked ? html.classList.add('dark') : html.classList.remove('dark');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+@config "../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    #mode:checked ~ label div.toggle {
+        @apply translate-x-4 transition
+    }
+}

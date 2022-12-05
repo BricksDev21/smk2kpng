@@ -1,0 +1,47 @@
+@extends('layouts.app')
+
+@section('content')
+<br>
+    <table>
+        <tbody>
+            <a href="{{ route('admin.inputGuru') }}" class="btn btn-md btn-success mb-3">TAMBAH GURU</a>
+            @forelse ($guru as $data)
+                <tr>
+                    <td class="text-center">
+                        <img src="{{ Storage::url('public/guru/').$data->gambar }}" class="rounded" style="width: 150px">
+                    </td>
+                </tr>
+                <tr>
+                    <td>{!! $data->nama !!}</td>
+                </tr>
+                <tr>
+                    <td>{{ $data->status['status_name'] }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteGuru', $data->guru_id) }}" method="POST">
+                        <a href="{{ route('admin.editGuru', $data->guru_id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">HAPUS</button>
+                    <td>
+                </form>
+                </tr>
+                @empty
+                <div>
+                    Data Guru belum Tersedia.
+                </div>
+            @endforelse
+        </tbody>
+    </table> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        //message with toastr
+        @if(session()->has('success'))
+            toastr.success('{{ session('success') }}'); 
+        @elseif(session()->has('error'))
+            toastr.error('{{ session('error') }}'); 
+        @endif
+    </script>
+@endsection
