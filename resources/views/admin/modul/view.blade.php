@@ -30,7 +30,6 @@
                 <tr>
                     <td>
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteModul', $data->modul_id) }}" method="POST">
-                        <a href="{{ route('admin.editModul', $data->modul_id) }}" class="btn btn-sm btn-primary">EDIT</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit">HAPUS</button>

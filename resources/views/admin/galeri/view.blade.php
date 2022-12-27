@@ -20,7 +20,6 @@
                 <tr>
                     <td>
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteGaleri', $data->galeri_id) }}" method="POST">
-                        <a href="{{ route('admin.editGaleri', $data->galeri_id) }}" class="btn btn-sm btn-primary">EDIT</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit">HAPUS</button>

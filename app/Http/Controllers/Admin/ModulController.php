@@ -34,7 +34,7 @@ class ModulController extends Controller
     {
         $this->validate($request, [
             'nama'          => 'required',
-            'narasi'        => 'required',
+            'deskripsi'     => 'required',
             'tags'          => 'required',
             'dokumen'       => 'required',
             'penulis'       => 'required',
@@ -50,10 +50,10 @@ class ModulController extends Controller
         $modul = Modul::create([
             'gambar'     => $image->hashName(),
             'dokumen'    => $dokumen->hashName(),
-            'deskripsi'  => $request->narasi,
+            'deskripsi'  => $request->deskripsi,
             'nama'       => $request->nama,
             'penulis'    => $request->penulis,
-            'keyword'    => $request->tags
+            'keyword'    => implode(',',$request->tags)
         ]);
 
         if($modul){

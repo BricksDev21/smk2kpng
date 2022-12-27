@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Contracts\Likeable;
+use App\Models\Like;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,13 +12,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'nama', 'nis', 'password',
     ];
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,19 @@ Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\Umum\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/galeri', [App\Http\Controllers\Umum\GaleriController::class, 'index'])->name('galeri');
+Route::get('/greeting', [App\Http\Controllers\Umum\GreetingController::class, 'index'])->name('greeting');
+Route::get('/vision', [App\Http\Controllers\Umum\VisionController::class, 'index'])->name('vision');
+Route::get('/teacher', [App\Http\Controllers\Umum\TeacherController::class, 'index'])->name('teacher');
+Route::get('/facility', [App\Http\Controllers\Umum\FacilityController::class, 'index'])->name('facility');
+Route::get('/modul', [App\Http\Controllers\Umum\ModulController::class, 'index'])->name('modul');
+Route::get('/major', [App\Http\Controllers\Umum\MajorController::class, 'index'])->name('major');
+Route::get('/major_detailed/{pengumuman_id}', [App\Http\Controllers\Umum\Major_detailed::class, 'index'])->name('major_detailed');
+Route::get('/pengumuman', [App\Http\Controllers\Umum\PengumumanController::class, 'index'])->name('pengumuman');
+Route::get('/pengumuman_detail/{pengumuman_id}', [App\Http\Controllers\Umum\Pengumuman_detailController::class, 'index'])->name('pengumuman_detail');
+Route::get('/berita', [App\Http\Controllers\Umum\BeritaController::class, 'index'])->name('berita');
+Route::get('/berita_detail/{id}', [App\Http\Controllers\Umum\berita_detailController::class, 'index'])->name('berita_detail');
 
 Route::group(['as'=>'admin.','prefix' => 'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function () {
-    
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('AdminGaleri', [App\Http\Controllers\Admin\GaleriController::class, 'index'])->name('galeri');
@@ -81,8 +93,30 @@ Route::group(['as'=>'admin.','prefix' => 'admin','namespace'=>'Admin','middlewar
     Route::delete('DeleteModul/{modul}', [App\Http\Controllers\Admin\ModulController::class, 'destroy'])->name('deleteModul');
     Route::get('EditModul/{modul}', [App\Http\Controllers\Admin\ModulController::class, 'edit'])->name('editModul');
     Route::put('UpdateModul/{modul}/edit', [App\Http\Controllers\Admin\ModulController::class, 'update'])->name('updateModul');
+
+    Route::get('Agenda', [App\Http\Controllers\Admin\AgendaController::class, 'index'])->name('agenda');
+    Route::get('InputAgenda', [App\Http\Controllers\Admin\AgendaController::class, 'create'])->name('inputAgenda');
+    Route::post('InsertAgenda', [App\Http\Controllers\Admin\AgendaController::class, 'store'])->name('insertAgenda');
+    Route::delete('DeleteAgenda/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'destroy'])->name('deleteAgenda');
+    Route::get('EditAgenda/{agenda}', [App\Http\Controllers\Admin\AgendaController::class, 'edit'])->name('editAgenda');
+    Route::put('UpdateAgenda/{agenda}/edit', [App\Http\Controllers\Admin\AgendaController::class, 'update'])->name('updateAgenda');
 });
 
-Route::group(['as'=>'siswa.','prefix' => 'siswa','namespace'=>'siswa','middleware'=>['auth','siswa']], function () {
-    Route::get('dashboard', [App\Http\Controllers\Siswa\DashboardController::class, 'index'])->name('dashboard');
+Route::group(['as'=>'siswa.','prefix' => 'siswa','namespace'=>'siswa','middleware'=>['auth','siswa']], function () {    
+    Route::get('/dashboard', [App\Http\Controllers\Siswa\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/galeri', [App\Http\Controllers\Siswa\GaleriController::class, 'index'])->name('galeri');
+    Route::get('/greeting', [App\Http\Controllers\Siswa\GreetingController::class, 'index'])->name('greeting');
+    Route::get('/vision', [App\Http\Controllers\Siswa\VisionController::class, 'index'])->name('vision');
+    Route::get('/teacher', [App\Http\Controllers\Siswa\TeacherController::class, 'index'])->name('teacher');
+    Route::get('/facility', [App\Http\Controllers\Siswa\FacilityController::class, 'index'])->name('facility');
+    Route::get('/modul', [App\Http\Controllers\SIswa\ModulController::class, 'index'])->name('modul');
+    Route::get('/major', [App\Http\Controllers\Siswa\MajorController::class, 'index'])->name('major');
+    Route::get('/major_detailed', [App\Http\Controllers\Siswa\Major_detailed::class, 'index'])->name('major_detailed');
+    Route::get('/pengumuman', [App\Http\Controllers\Siswa\PengumumanController::class, 'index'])->name('pengumuman');
+    Route::get('/pengumuman_detail/{pengumuman_id}', [App\Http\Controllers\Siswa\Pengumuman_detailController::class, 'index'])->name('pengumuman_detail');
+    Route::get('/berita', [App\Http\Controllers\Siswa\BeritaController::class, 'index'])->name('berita');
+    Route::get('/berita_detail/{id}', [App\Http\Controllers\Siswa\berita_detailController::class, 'index'])->name('berita_detail');
+    Route::post('/items/{item}/like', [App\Http\Controllers\Siswa\LikeController::class, 'like'])->name('items.like');
+    Route::delete('/items/{item}/like', [App\Http\Controllers\Siswa\LikeController::class, 'unlike'])->name('items.unlike');
+    Route::post('save-comment',\App\Http\Controllers\Siswa\PostController::class . '@save_comment');
 });

@@ -10,7 +10,7 @@
 @section('content')
 
         <label>Edit Berita</label>
-        <form method="POST" enctype="multipart/form-data" action="{{ route('admin.updateBerita', $berita->berita_id) }}"> 
+        <form method="POST" enctype="multipart/form-data" action="{{ route('admin.updateBerita', $berita->id) }}"> 
         @csrf
         @method('PUT')
 
@@ -20,16 +20,32 @@
             {{ $message }}
         @enderror
         
-                <label for="narasi">Narasi Berita</label>
-            <textarea required="" name="narasi" id="narasi" class="text-dark form-control summernote">{{ $berita->narasi }}</textarea>
-            <br><br>
+        <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <input type="file" name="gambar" class="dropify form-control" data-height="190" data-allowed-file-extensions="png jpg gif jpeg svg webp jfif"  data-default-file="{{ Storage::url('public/berita/gambar/').$berita->gambar }}">
+                    </div>
+                </div>
+            </div>
 
+                <label for="narasi">Narasi Berita</label>
+            <textarea required="" name="narasi" id="narasi" class="text-dark form-control summernote">{!! $berita->narasi !!}</textarea>
+            <br><br>
+ 
               <label>Tag Berita</label><br>
               <select class="select2-multiple form-control" name="tags[]" multiple="multiple">
                         @foreach (explode(',', $berita->keyword) as $taging)
+                       
                             @foreach ($tag as $tags)
+                            
                                 @if($tags->tag_id == $taging) 
+                                {
                                 <option value="{{ $tags->tag_id }}" {{ ( $tags->tag_id == $berita->kategori_id) ? 'selected' : '' }}> {{ $tags->tag_name }} </option>   
+                            }
+                            @else {
+                                <option value="{{ $tags->tag_id }}" {{ in_array($tags->tag_id, old('tags', [])) ? 'selected' : '' }}>{{ $tags->tag_name }}</option>
+                            }
                                 @endif
                             @endforeach
                         @endforeach               

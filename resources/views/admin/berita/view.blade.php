@@ -36,8 +36,8 @@
                 
                 <tr>
                     <td>
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteBerita', $data->berita_id) }}" method="POST">
-                        <a href="{{ route('admin.editBerita', $data->berita_id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteBerita', $data->id) }}" method="POST">
+                       
                         @csrf
                         @method('DELETE')
                         <button type="submit">HAPUS</button>

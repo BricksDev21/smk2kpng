@@ -12,7 +12,6 @@
                 <tr>
                     <td>
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.deleteKategori', $data->kategori_id) }}" method="POST">
-                        <a href="{{ route('admin.editKategori', $data->kategori_id) }}" class="btn btn-sm btn-primary">EDIT</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit">HAPUS</button>

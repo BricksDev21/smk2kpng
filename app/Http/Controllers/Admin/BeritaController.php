@@ -40,12 +40,37 @@ class BeritaController extends Controller
             'narasi'        => 'required',
             'tags'          => 'required',
             'kategori_id'   => 'required',
+            'gambar'        => 'required',
             'penulis'       => 'required'
         ]);
 
+        $content = $request->narasi;
+       $dom = new \DomDocument();
+       $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+       $imageFile = $dom->getElementsByTagName('img');
+ 
+       foreach($imageFile as $item => $image){
+           $data = $image->getAttribute('src');
+           list($type, $data) = explode(';', $data);
+           list(, $data)      = explode(',', $data);
+           $imgeData = base64_decode($data);
+           $image_name= "/img/pengumuman/" . time().$item.'.png';
+           $path = public_path() . $image_name;
+           file_put_contents($path, $imgeData);
+           
+           $image->removeAttribute('src');
+           $image->setAttribute('src', $image_name);
+        }
+ 
+       $content = $dom->saveHTML();
+
+        $image = $request->file('gambar');
+        $image->storeAs('public/berita/gambar/', $image->hashName());
+
         $berita = Berita::create([
+            'gambar'     => $image->hashName(),
             'nama'         => $request->nama,
-            'narasi'       => json_encode($request->narasi),
+            'narasi'       => $content,
             'keyword'      => implode(',',$request->tags),
             'kategori_id'  => $request->kategori_id,
             'author'       => $request->penulis
@@ -58,9 +83,10 @@ class BeritaController extends Controller
         }
     }
 
-    public function destroy($berita_id)
+    public function destroy($id)
     {
-        $berita = Berita::findOrFail($berita_id);
+        $berita = Berita::findOrFail($id);
+        Storage::disk('local')->delete('public/berita/gambar/'.$berita->gambar);
         $berita->delete();
 
         if($berita){
@@ -70,9 +96,9 @@ class BeritaController extends Controller
         }
     }
 
-    public function edit($berita_id)
+    public function edit($id)
     {
-        $berita = Berita::findOrFail($berita_id);
+        $berita = Berita::findOrFail($id);
         $kategori = KategoriBerita::all();
         $tag = Tag::all();
         return view('admin.berita.edit', [
@@ -82,24 +108,50 @@ class BeritaController extends Controller
         ]);
     }
 
-    public function update(Request $request, $berita_id)
+    public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama'          => 'required',
-            'narasi'        => 'required',
-            'tags'          => 'required',
-            'kategori_id'   => 'required',
-            'penulis'       => 'required'
-        ]);
 
-        $updater = Berita::findOrFail($berita_id);
+        $updater = Berita::findOrFail($id);
 
-            $updater->nama   = $request->input('nama');
-            $updater->narasi   = json_encode($request->input('narasi'));
+        $content = $request->input('narasi');
+       $dom = new \DomDocument();
+       $dom->loadHtml($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+       $imageFile = $dom->getElementsByTagName('img');
+ 
+       foreach($imageFile as $item => $image){
+           $data = $image->getAttribute('src');
+           list($type, $data) = explode(';', $data);
+           list(, $data)      = explode(',', $data);
+           $imgeData = base64_decode($data);
+           $image_name= "/img/pengumuman/" . time().$item.'.png';
+           $path = public_path() . $image_name;
+           file_put_contents($path, $imgeData);
+           
+           $image->removeAttribute('src');
+           $image->setAttribute('src', $image_name);
+        }
+ 
+       $content = $dom->saveHTML();
+
+            if($request->file('gambar') == "") {
+                $updater->nama   = $request->input('nama');
+            $updater->narasi   = $content;
             $updater->keyword   = implode(',',($request->input('tags')));
             $updater->kategori_id   = $request->input('kategori_id');
             $updater->author   = $request->input('penulis');
             $updater-> save();
+            } else {
+                Storage::disk('local')->delete('public/berita/gambar/'.$updater->gambar);
+            $image = $request->file('gambar');
+            $image->storeAs('public/berita/gambar/', $image->hashName());
+            $updater->gambar   = $image->hashName();
+            $updater->nama   = $request->input('nama');
+            $updater->narasi   = $content;
+            $updater->keyword   = implode(',',($request->input('tags')));
+            $updater->kategori_id   = $request->input('kategori_id');
+            $updater->author   = $request->input('penulis');
+            $updater-> save();
+            }
         
 
         if($updater){
@@ -109,3 +161,4 @@ class BeritaController extends Controller
         }
     }
 }
+ 

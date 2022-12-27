@@ -27,6 +27,7 @@
     <a href="{{ route('admin.berita') }}" class="btn btn-md btn-success mb-3">Berita</a><br>
     <a href="{{ route('admin.pengumuman') }}" class="btn btn-md btn-success mb-3">Pengumuman</a><br>
     <a href="{{ route('admin.modul') }}" class="btn btn-md btn-success mb-3">Modul</a><br>
+    <a href="{{ route('admin.agenda') }}" class="btn btn-md btn-success mb-3">Agenda</a><br>
     <main class="py-4">
         @yield('content')
     </main>

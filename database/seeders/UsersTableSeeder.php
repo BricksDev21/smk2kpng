@@ -16,19 +16,19 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'role_id' => '1',
-            'nis' => '5200411170',
+            'nis' => '1111111111',
             'password' => bcrypt('qwerty'),
         ]);
         
         DB::table('users')->insert([
             'role_id' => '2',
-            'nis' => '5200411171',
+            'nis' => '2222222222',
             'password' => bcrypt('qwerty'),
         ]);
         
         DB::table('users')->insert([
             'role_id' => '3',
-            'nis' => '5200411172',
+            'nis' => '3333333333',
             'password' => bcrypt('qwerty'),
         ]);
     }

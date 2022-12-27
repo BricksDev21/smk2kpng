@@ -9,9 +9,9 @@ class Berita extends Model
 {
     use HasFactory;
     protected $table = 'berita';
-    protected $primaryKey = 'berita_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
-		'nama', 'narasi', 'keyword', 'kategori_id', 'author'
+		'nama', 'gambar', 'narasi', 'keyword', 'kategori_id', 'author', 'created_at'
 	];
 
     public function tagBerita()
@@ -23,4 +23,7 @@ class Berita extends Model
     {
       return $this->belongsTo('App\Models\kategoriBerita', 'kategori_id');
     }
+    function comments(){
+      return $this->hasMany('App\Models\Comment')->orderBy('id','desc');
+  }
 }

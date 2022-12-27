@@ -17,6 +17,14 @@
                     {{ $message }}
                 @enderror
             
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <input type="file" name="gambar" class="dropify form-control" data-height="190" data-allowed-file-extensions="png jpg gif jpeg svg webp jfif" required>
+                    </div>
+                </div>
+            </div>
 
             <label for="narasi">Narasi Berita</label>
             <textarea required="" name="narasi" id="narasi" class="text-dark form-control summernote"></textarea>
@@ -44,8 +52,6 @@
                 @enderror
                 <button type="submit" class="btn btn-primary">UPLOAD</button>
         </form>
-        
-
 @stop
 
 @push('js')

@@ -27,7 +27,7 @@
                     {{ $message }}
                 @enderror
 
-                <label>Tag Berita</label><br>
+                <label>Tag Modul</label><br>
               <select class="select2-multiple form-control" name="tags[]" multiple="multiple">
               @foreach($tags as $tag)
                         <option value="{{ $tag->tag_id }}" {{ in_array($tag->tag_id, old('tags', [])) ? 'selected' : '' }}>{{ $tag->tag_name }}</option>
